@@ -1591,6 +1591,26 @@ textarea {
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.24);
   cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.teacher-chip:hover {
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.19);
+  border-color: rgba(253, 230, 138, 0.55);
+}
+
+.teacher-chip-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fde68a;
+  letter-spacing: 0.01em;
 }
 
 .teacher-avatar {
@@ -1664,6 +1684,55 @@ textarea {
 
 .card-wiggle-click:hover .teacher-showcase-photo {
   transform: scale(1.04) rotate(1.5deg);
+}
+
+.teacher-identity-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 14px 0;
+  flex-wrap: wrap;
+}
+
+.teacher-identity-meta {
+  flex: 1;
+  min-width: 190px;
+}
+
+.teacher-identity-bio {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.teacher-identity-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.portfolio-mini-grid-2x2 {
+  gap: 10px;
+}
+
+.portfolio-mini-stat {
+  padding: 12px;
+}
+
+.portfolio-mini-num {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.portfolio-mini-num.is-impact {
+  font-size: 26px;
+}
+
+.portfolio-mini-label {
+  font-size: 12.8px;
+  line-height: 1.35;
+  margin-top: 3px;
 }
 
 /* Ruang Materi Class Cards & Inline 3-Control Filter Row */
@@ -2271,6 +2340,20 @@ textarea {
 
 .card-wiggle-click.is-wiggle {
   animation: cardGoyang 0.65s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes cardSoftTap {
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(0.992);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4677,6 +4760,135 @@ tr:last-child td {
 
   .class-picker-card.prak-card-has-bg .prak-card-mid-spacer {
     min-height: 68px;
+  }
+
+  .home-quick-access-section,
+  .riwayat-summary-cards {
+    display: none !important;
+  }
+
+  .tabs.tentang-tab-bar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    overflow-x: visible;
+    flex-wrap: initial;
+    padding-bottom: 12px;
+  }
+
+  .tabs.tentang-tab-bar .tab-btn {
+    width: 100%;
+    min-width: 0;
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 1.3;
+    min-height: 44px;
+  }
+
+  .teacher-identity-card {
+    text-align: center;
+  }
+
+  .teacher-identity-head {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+    margin: 14px 0 10px;
+  }
+
+  .teacher-identity-card .teacher-showcase-photo-sm {
+    width: 124px;
+    height: 162px;
+    margin: 0 auto;
+    border-radius: 18px;
+  }
+
+  .teacher-identity-meta {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .teacher-identity-meta h2 {
+    font-size: 19px;
+  }
+
+  .teacher-identity-bio {
+    text-align: center;
+    font-size: 13.2px;
+  }
+
+  .teacher-identity-links {
+    justify-content: center;
+  }
+
+  .grid-2.portfolio-mini-grid-2x2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .portfolio-mini-grid-2x2 .portfolio-mini-stat {
+    padding: 9px 10px !important;
+    border-radius: 12px;
+  }
+
+  .portfolio-mini-grid-2x2 .portfolio-mini-num,
+  .portfolio-mini-grid-2x2 .portfolio-mini-num.is-impact {
+    font-size: 18px !important;
+  }
+
+  .portfolio-mini-grid-2x2 .portfolio-mini-label {
+    font-size: 11px !important;
+    line-height: 1.28;
+  }
+
+  /* Khusus HP: kurangi goncangan/gerak kartu & tombol agar nyaman di mata saat diklik atau disentuh */
+  .card-hover {
+    transition: transform 0.16s ease-out, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card-hover:hover,
+  .card-hover:hover .quick-bento-icon,
+  .card-hover:hover .mini-stat-icon,
+  .card-wiggle-click:hover .teacher-showcase-photo,
+  .class-picker-card.prak-card-has-bg:hover .prak-card-bg-img {
+    transform: none;
+  }
+
+  .card-hover:active,
+  .mini-stat-card:active,
+  .pilar-modern-card:active,
+  .login-choice-card:active,
+  .schedule-card:active {
+    transition: transform 0.08s ease-out;
+    transform: scale(0.992);
+  }
+
+  .card-hover.is-genjot,
+  .mini-stat-card.is-genjot,
+  .pilar-modern-card.is-genjot,
+  .login-choice-card.is-genjot,
+  .schedule-card.is-genjot,
+  .card-wiggle-click.is-wiggle {
+    animation: cardSoftTap 0.2s ease-out;
+  }
+
+  .btn {
+    transition: transform 0.14s ease-out, background-color 0.16s ease, box-shadow 0.2s ease, border-color 0.16s ease;
+  }
+
+  .btn:hover:not(:disabled) {
+    transform: none;
+  }
+
+  .btn:active:not(:disabled) {
+    transform: scale(0.985);
   }
 }
 
