@@ -91,15 +91,15 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
 
     return `
       <div class="grid grid-2">
-        <div class="card card-hover card-wiggle-click tone-emerald">
+        <div class="card card-hover card-wiggle-click tone-emerald teacher-identity-card">
           <span class="tag tag-emerald">Profil Pendidik &amp; Satuan Pendidikan</span>
-          <div style="display:flex;align-items:center;gap:16px;margin:14px 0;flex-wrap:wrap;">
+          <div class="teacher-identity-head">
             ${
               teacherPhoto
                 ? `<img class="teacher-showcase-photo-sm" src="${escapeHtml(teacherPhoto)}" alt="${escapeHtml(cfg.teacherName)}" />`
                 : `<div class="teacher-showcase-photo-sm teacher-showcase-placeholder">${teacherInitial}</div>`
             }
-            <div style="flex:1;min-width:190px;">
+            <div class="teacher-identity-meta">
               <h2 style="margin:0 0 4px;">${escapeHtml(cfg.teacherName)}</h2>
               <p style="margin:0;color:#ffffff;font-size:13.5px;">
                 ${escapeHtml(cfg.teacherTitle || 'Guru PAI & Budi Pekerti')} • <strong>${escapeHtml(cfg.schoolName)}</strong> (${escapeHtml(cfg.academicYear)})
@@ -107,11 +107,10 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
               ${cfg.teacherNip ? `<small style="color:rgba(255,255,255,0.92);">NIP/NUPTK: ${escapeHtml(cfg.teacherNip)}</small>` : ''}
             </div>
           </div>
-          <p style="margin:0 0 14px;font-size:14px;color:rgba(255,255,255,0.94);">
+          <p class="teacher-identity-bio">
             ${escapeHtml(cfg.teacherBio || 'Pendidik PAI-BP yang berfokus pada pembelajaran mendalam (Deep Learning) dan Kurikulum Berbasis Cinta.')}
           </p>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;">
-            <a href="${escapeHtml(safeUrl(cfg.smartPaiUrl) || 'https://smartpai.kemenag.go.id')}" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm">Smart PAI Kemenag ↗</a>
+          <div class="teacher-identity-links">
             <a href="${escapeHtml(safeUrl(cfg.kemenagUrl) || 'https://pendis.kemenag.go.id')}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light btn-sm">Ditjen Pendis Kemenag ↗</a>
           </div>
         </div>
@@ -119,22 +118,22 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
         <div class="card">
           <span class="tag tag-gold">📊 Rekam Jejak Portofolio Pendidik</span>
           <h3 style="margin:10px 0 12px;">Ringkasan Kualifikasi &amp; Pengalaman Guru</h3>
-          <div class="grid grid-2" style="gap:10px;margin-bottom:12px;">
-            <div class="callout callout-emerald" style="padding:12px;">
-              <div style="font-size:22px;font-weight:800;color:var(--emerald-900);">${(grouped.Mengajar || []).length}</div>
-              <div style="font-size:12.8px;color:var(--slate-700);">🏫 Riwayat Mengajar</div>
+          <div class="grid grid-2 portfolio-mini-grid-2x2" style="margin-bottom:12px;">
+            <div class="callout callout-emerald portfolio-mini-stat">
+              <div class="portfolio-mini-num" style="color:var(--emerald-900);">${(grouped.Mengajar || []).length}</div>
+              <div class="portfolio-mini-label" style="color:var(--slate-700);">🏫 Riwayat Mengajar</div>
             </div>
-            <div class="callout" style="padding:12px;">
-              <div style="font-size:22px;font-weight:800;color:var(--slate-900);">${(grouped.Pendidikan || []).length}</div>
-              <div style="font-size:12.8px;color:var(--slate-700);">🎓 Riwayat Pendidikan</div>
+            <div class="callout portfolio-mini-stat">
+              <div class="portfolio-mini-num" style="color:var(--slate-900);">${(grouped.Pendidikan || []).length}</div>
+              <div class="portfolio-mini-label" style="color:var(--slate-700);">🎓 Riwayat Pendidikan</div>
             </div>
-            <div class="callout callout-gold" style="padding:12px;">
-              <div style="font-size:22px;font-weight:800;color:var(--gold-600);">${(grouped.Penghargaan || []).length}</div>
-              <div style="font-size:12.8px;color:var(--slate-700);">🏆 Penghargaan &amp; Prestasi</div>
+            <div class="callout callout-gold portfolio-mini-stat">
+              <div class="portfolio-mini-num" style="color:var(--gold-600);">${(grouped.Penghargaan || []).length}</div>
+              <div class="portfolio-mini-label" style="color:var(--slate-700);">🏆 Penghargaan &amp; Prestasi</div>
             </div>
-            <div class="callout" style="padding:12px;">
-              <div style="font-size:22px;font-weight:800;color:var(--slate-900);">${(grouped.Diklat || []).length}</div>
-              <div style="font-size:12.8px;color:var(--slate-700);">📜 Diklat &amp; Pelatihan</div>
+            <div class="callout portfolio-mini-stat">
+              <div class="portfolio-mini-num" style="color:var(--slate-900);">${(grouped.Diklat || []).length}</div>
+              <div class="portfolio-mini-label" style="color:var(--slate-700);">📜 Diklat &amp; Pelatihan</div>
             </div>
           </div>
           <small style="color:var(--slate-600);display:block;">Data profil &amp; rekam jejak dikelola langsung oleh Guru Pengampu melalui Pengaturan Identitas Guru.</small>
@@ -146,22 +145,22 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
       <div class="grid grid-2">
         <div class="card">
           <h3 style="margin:0 0 12px;">📈 Indikator Dampak Pembelajaran Kelas</h3>
-          <div class="grid grid-2" style="gap:12px;">
-            <div class="callout callout-emerald">
-              <div style="font-size:26px;font-weight:800;color:var(--emerald-900);">${stats.attendanceRate}%</div>
-              <div style="font-size:13px;color:var(--slate-700);">Persentase Kehadiran (${stats.totalAbsensi} catatan)</div>
+          <div class="grid grid-2 portfolio-mini-grid-2x2">
+            <div class="callout callout-emerald portfolio-mini-stat">
+              <div class="portfolio-mini-num is-impact" style="color:var(--emerald-900);">${stats.attendanceRate}%</div>
+              <div class="portfolio-mini-label" style="color:var(--slate-700);">Persentase Kehadiran (${stats.totalAbsensi} catatan)</div>
             </div>
-            <div class="callout callout-gold">
-              <div style="font-size:26px;font-weight:800;color:var(--gold-600);">${stats.masteryRate}%</div>
-              <div style="font-size:13px;color:var(--slate-700);">Ketuntasan Evaluasi (Skor ≥ 75)</div>
+            <div class="callout callout-gold portfolio-mini-stat">
+              <div class="portfolio-mini-num is-impact" style="color:var(--gold-600);">${stats.masteryRate}%</div>
+              <div class="portfolio-mini-label" style="color:var(--slate-700);">Ketuntasan Evaluasi (Skor ≥ 75)</div>
             </div>
-            <div class="callout">
-              <div style="font-size:26px;font-weight:800;color:var(--slate-900);">${stats.totalHots}</div>
-              <div style="font-size:13px;color:var(--slate-600);">Respons Analisis Ruang Kritis HOTS</div>
+            <div class="callout portfolio-mini-stat">
+              <div class="portfolio-mini-num is-impact" style="color:var(--slate-900);">${stats.totalHots}</div>
+              <div class="portfolio-mini-label" style="color:var(--slate-600);">Respons Analisis Ruang Kritis HOTS</div>
             </div>
-            <div class="callout">
-              <div style="font-size:26px;font-weight:800;color:var(--slate-900);">${stats.totalAmaliyah}</div>
-              <div style="font-size:13px;color:var(--slate-600);">Jurnal Amaliyah &amp; Karakter KBC</div>
+            <div class="callout portfolio-mini-stat">
+              <div class="portfolio-mini-num is-impact" style="color:var(--slate-900);">${stats.totalAmaliyah}</div>
+              <div class="portfolio-mini-label" style="color:var(--slate-600);">Jurnal Amaliyah &amp; Karakter KBC</div>
             </div>
           </div>
         </div>
@@ -435,7 +434,7 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
       </div>
 
       <div class="container" style="display:flex;flex-direction:column;gap:22px;">
-        <div class="tabs no-print">
+        <div class="tabs tentang-tab-bar no-print">
           ${tabs
             .map(
               (t) => `<button type="button" class="tab-btn ${activeTab === t.id ? 'active' : ''}" data-tentang-tab="${t.id}">${escapeHtml(t.label)}</button>`
