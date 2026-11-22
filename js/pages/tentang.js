@@ -59,8 +59,8 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
             <small style="color:var(--slate-500);font-weight:700;">${rows.length} Catatan</small>
           </div>
           ${rows.length === 0
-            ? `<p style="margin:0;font-size:13.5px;color:var(--slate-500);">${meta.empty}</p>`
-            : `<div class="table-wrap">
+          ? `<p style="margin:0;font-size:13.5px;color:var(--slate-500);">${meta.empty}</p>`
+          : `<div class="table-wrap">
                 <table>
                   <thead>
                     <tr>
@@ -72,19 +72,19 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
                   </thead>
                   <tbody>
                     ${rows
-                      .map(
-                        (r) => `<tr>
+            .map(
+              (r) => `<tr>
                           <td><strong>${escapeHtml(r.periode || '-')}</strong></td>
                           <td><strong>${escapeHtml(r.judul || '-')}</strong></td>
                           <td>${escapeHtml(r.instansi || '-')}</td>
                           <td style="font-size:13px;color:var(--slate-700);">${escapeHtml(r.keterangan || '-')}</td>
                         </tr>`
-                      )
-                      .join('')}
+            )
+            .join('')}
                   </tbody>
                 </table>
               </div>`
-          }
+        }
         </div>
       `;
     };
@@ -92,13 +92,12 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
     return `
       <div class="grid grid-2">
         <div class="card card-hover card-wiggle-click tone-emerald teacher-identity-card">
-          <span class="tag tag-emerald">Profil Pendidik &amp; Satuan Pendidikan</span>
+          <span class="tag tag-emerald">Profil Pendidik</span>
           <div class="teacher-identity-head">
-            ${
-              teacherPhoto
-                ? `<img class="teacher-showcase-photo-sm" src="${escapeHtml(teacherPhoto)}" alt="${escapeHtml(cfg.teacherName)}" />`
-                : `<div class="teacher-showcase-photo-sm teacher-showcase-placeholder">${teacherInitial}</div>`
-            }
+            ${teacherPhoto
+        ? `<img class="teacher-showcase-photo-sm" src="${escapeHtml(teacherPhoto)}" alt="${escapeHtml(cfg.teacherName)}" />`
+        : `<div class="teacher-showcase-photo-sm teacher-showcase-placeholder">${teacherInitial}</div>`
+      }
             <div class="teacher-identity-meta">
               <h2 style="margin:0 0 4px;">${escapeHtml(cfg.teacherName)}</h2>
               <p style="margin:0;color:#ffffff;font-size:13.5px;">
@@ -187,11 +186,10 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
         <div class="card card-hover card-wiggle-click tone-emerald kontak-school-card">
           <span class="tag tag-emerald">Identitas Resmi Satuan Pendidikan</span>
           <div class="kontak-school-head">
-            ${
-              logoSrc
-                ? `<img src="${escapeHtml(logoSrc)}" alt="Logo ${escapeHtml(cfg.schoolName)}" style="width:68px;height:68px;border-radius:14px;object-fit:contain;padding:4px;border:1.5px solid var(--emerald-200);background:#f8fafc;flex-shrink:0;" />`
-                : `<div style="width:68px;height:68px;border-radius:14px;background:var(--emerald-900);color:#fde68a;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;flex-shrink:0;">🏫</div>`
-            }
+            ${logoSrc
+        ? `<img src="${escapeHtml(logoSrc)}" alt="Logo ${escapeHtml(cfg.schoolName)}" style="width:68px;height:68px;border-radius:14px;object-fit:contain;padding:4px;border:1.5px solid var(--emerald-200);background:#f8fafc;flex-shrink:0;" />`
+        : `<div style="width:68px;height:68px;border-radius:14px;background:var(--emerald-900);color:#fde68a;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;flex-shrink:0;">🏫</div>`
+      }
             <div class="kontak-school-head-meta">
               ${cfg.namaInstansi ? `<div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:var(--emerald-700);margin-bottom:2px;">${escapeHtml(cfg.namaInstansi)}</div>` : ''}
               <h2 style="margin:0 0 4px;">${escapeHtml(cfg.schoolName || 'Satuan Pendidikan')}</h2>
@@ -224,11 +222,10 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
         <div class="card card-hover card-wiggle-click tone-gold kontak-teacher-card" id="card-teacher-showcase">
           <span class="tag tag-gold">✨ Pendidik &amp; Pengelola Portal PAI</span>
           <div class="teacher-showcase-row">
-            ${
-              teacherPhoto
-                ? `<img class="teacher-showcase-photo" src="${escapeHtml(teacherPhoto)}" alt="${escapeHtml(cfg.teacherName)}" />`
-                : `<div class="teacher-showcase-photo teacher-showcase-placeholder">${teacherInitial}</div>`
-            }
+            ${teacherPhoto
+        ? `<img class="teacher-showcase-photo" src="${escapeHtml(teacherPhoto)}" alt="${escapeHtml(cfg.teacherName)}" />`
+        : `<div class="teacher-showcase-photo teacher-showcase-placeholder">${teacherInitial}</div>`
+      }
             <div class="teacher-showcase-meta">
               <h2 style="margin:0 0 6px;">${escapeHtml(cfg.teacherName)}</h2>
               <div style="font-size:14px;font-weight:700;color:var(--emerald-800);margin-bottom:4px;">${escapeHtml(cfg.teacherTitle || 'Guru PAI & Budi Pekerti')}</div>
@@ -265,24 +262,23 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
       <div class="filter-bar">
         <div class="filter-group">
           ${['Semua', 'X', 'XI', 'XII']
-            .map(
-              (j) => `<button type="button" class="tab-btn ${filterJenjang === j ? 'active' : ''}" data-gal-filter="${j}">
+        .map(
+          (j) => `<button type="button" class="tab-btn ${filterJenjang === j ? 'active' : ''}" data-gal-filter="${j}">
                 ${j === 'Semua' ? 'Semua Kelas' : 'Kelas ' + j}
               </button>`
-            )
-            .join('')}
+        )
+        .join('')}
         </div>
         <span class="tag tag-emerald">Total ${galeri.length} Karya Terkurasi</span>
       </div>
 
       <div class="grid grid-3">
-        ${
-          galeri.length === 0
-            ? `<div class="card" style="grid-column:1/-1;text-align:center;">Belum ada karya terkurasi pada filter kelas ini.</div>`
-            : galeri
-                .map((g) => {
-                  const imgSrc = resolveImageUrl(g.gambarUrl);
-                  return `<article class="card card-hover" style="display:flex;flex-direction:column;justify-content:space-between;gap:12px;">
+        ${galeri.length === 0
+        ? `<div class="card" style="grid-column:1/-1;text-align:center;">Belum ada karya terkurasi pada filter kelas ini.</div>`
+        : galeri
+          .map((g) => {
+            const imgSrc = resolveImageUrl(g.gambarUrl);
+            return `<article class="card card-hover" style="display:flex;flex-direction:column;justify-content:space-between;gap:12px;">
                     <div>
                       ${imgSrc ? `<img class="card-cover-img" src="${escapeHtml(imgSrc)}" alt="${escapeHtml(g.judul)}" style="cursor:pointer;" data-gal-zoom="${escapeHtml(imgSrc)}" data-gal-title="${escapeHtml(g.judul)}" />` : ''}
                       <div style="display:flex;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
@@ -294,16 +290,15 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
                     </div>
                     <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding-top:10px;border-top:1px solid var(--slate-100);">
                       <small style="color:var(--slate-500);font-weight:600;">👤 ${escapeHtml(g.kreator)}</small>
-                      ${
-                        ((window.BTD_UI && window.BTD_UI.safeNavUrl) || safeUrl)(g.tautan)
-                          ? `<a href="${escapeHtml(((window.BTD_UI && window.BTD_UI.safeNavUrl) || safeUrl)(g.tautan))}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Lihat Karya ↗</a>`
-                          : ''
-                      }
+                      ${((window.BTD_UI && window.BTD_UI.safeNavUrl) || safeUrl)(g.tautan)
+                ? `<a href="${escapeHtml(((window.BTD_UI && window.BTD_UI.safeNavUrl) || safeUrl)(g.tautan))}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Lihat Karya ↗</a>`
+                : ''
+              }
                     </div>
                   </article>`;
-                })
-                .join('')
-        }
+          })
+          .join('')
+      }
       </div>
 
       <div class="card">
@@ -314,21 +309,20 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
           </div>
         </div>
         <div class="grid grid-2">
-          ${
-            curatedHots.length === 0
-              ? `<p style="color:var(--slate-500);margin:0;">Belum ada analisis HOTS yang dikurasi guru.</p>`
-              : curatedHots
-                  .map(
-                    (h) => `<div class="callout callout-emerald">
+          ${curatedHots.length === 0
+        ? `<p style="color:var(--slate-500);margin:0;">Belum ada analisis HOTS yang dikurasi guru.</p>`
+        : curatedHots
+          .map(
+            (h) => `<div class="callout callout-emerald">
                       <div style="display:flex;justify-content:space-between;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
                         <strong>Siswa ${escapeHtml(h.kelas || '')} (Terkurasi Guru)</strong>
                         <span class="tag tag-gold">${escapeHtml(h.nilaiKbc)}</span>
                       </div>
                       <p style="margin:0;font-size:13.8px;color:var(--slate-700);">"${escapeHtml(h.analisis)}"</p>
                     </div>`
-                  )
-                  .join('')
-          }
+          )
+          .join('')
+      }
         </div>
       </div>
     `;
@@ -425,21 +419,20 @@ window.BTD_PAGES.tentang = function renderTentang(container, routeParams = {}) {
             <h1>Tentang Kami — ${escapeHtml(cfg.siteName)}</h1>
             <p>${escapeHtml(cfg.schoolName)} • ${escapeHtml(cfg.academicYear)} — Portofolio rekam jejak guru pengampu, informasi kontak sekolah, etalase karya siswa, serta dasar hukum &amp; privasi data.</p>
           </div>
-          ${
-            activeTab === 'portofolio'
-              ? `<button type="button" class="btn btn-gold btn-sm no-print" id="btn-print-portfolio">🖨️ Cetak / Simpan PDF Portofolio</button>`
-              : ''
-          }
+          ${activeTab === 'portofolio'
+        ? `<button type="button" class="btn btn-gold btn-sm no-print" id="btn-print-portfolio">🖨️ Cetak / Simpan PDF Portofolio</button>`
+        : ''
+      }
         </div>
       </div>
 
       <div class="container" style="display:flex;flex-direction:column;gap:22px;">
         <div class="tabs tentang-tab-bar no-print">
           ${tabs
-            .map(
-              (t) => `<button type="button" class="tab-btn ${activeTab === t.id ? 'active' : ''}" data-tentang-tab="${t.id}">${escapeHtml(t.label)}</button>`
-            )
-            .join('')}
+        .map(
+          (t) => `<button type="button" class="tab-btn ${activeTab === t.id ? 'active' : ''}" data-tentang-tab="${t.id}">${escapeHtml(t.label)}</button>`
+        )
+        .join('')}
         </div>
 
         ${tabHtml}
