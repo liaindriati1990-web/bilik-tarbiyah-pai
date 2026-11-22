@@ -61,21 +61,22 @@ window.BTD_PAGES.beranda = function renderBeranda(container) {
             dalam satu portal terintegrasi.
           </p>
           <div class="hero-actions">
-            <a href="#materi" class="btn btn-gold hero-btn-glow">📖 Mulai Belajar Sekarang</a>
-            <a href="#riwayat" class="btn btn-ghost-light">📅 Jadwal &amp; Riwayat Mengajar</a>
-            <button type="button" class="btn btn-ghost-light" id="home-open-login">🔐 Login Siswa / Guru</button>
+            <a href="#materi" class="btn btn-gold hero-btn-glow">📖 Ruang Materi</a>
+            <a href="#belajar" class="btn btn-ghost-light">🕌 Ruang Praktikum</a>
+            <a href="#riwayat" class="btn btn-ghost-light">📅 Jadwal Mengajar</a>
           </div>
 
-          <div class="teacher-chip card-hover card-wiggle-click">
+          <a href="#tentang?tab=portofolio" class="teacher-chip card-hover card-wiggle-click" aria-label="Buka Portofolio Guru ${escapeHtml(cfg.teacherName)}" title="Lihat Portofolio &amp; Riwayat Guru">
             ${teacherPhoto
       ? `<img class="teacher-avatar teacher-avatar-lg" src="${escapeHtml(teacherPhoto)}" alt="${escapeHtml(cfg.teacherName)}" />`
       : `<div class="teacher-avatar teacher-avatar-lg">${teacherInitial}</div>`
     }
             <div style="line-height:1.3;">
               <strong style="font-size:14px;display:block;color:#fff;">${escapeHtml(cfg.teacherName)}</strong>
-              <small style="font-size:12px;color:#d1fae5;">${escapeHtml(cfg.teacherTitle || 'Guru PAI-BP')} • ${escapeHtml(schoolName)} (${escapeHtml(cfg.academicYear)})</small>
+              <small style="font-size:12px;color:#d1fae5;display:block;">${escapeHtml(cfg.teacherTitle || 'Guru PAI-BP')} • ${escapeHtml(schoolName)} (${escapeHtml(cfg.academicYear)})</small>
+              <span class="teacher-chip-cta">👩‍🏫 Lihat Portofolio Guru →</span>
             </div>
-          </div>
+          </a>
         </div>
 
         <!-- Hero Banner Slider -->
@@ -170,8 +171,8 @@ window.BTD_PAGES.beranda = function renderBeranda(container) {
       </div>
     </section>
 
-    <!-- Akses Cepat 4 Pilar -->
-    <section class="section">
+    <!-- Akses Cepat 4 Pilar (disembunyikan khusus HP lewat CSS) -->
+    <section class="section home-quick-access-section">
       <div class="container">
         <div class="section-header">
           <div>
@@ -347,10 +348,5 @@ window.BTD_PAGES.beranda = function renderBeranda(container) {
   const aiBtn = document.getElementById('home-open-ai');
   if (aiBtn) {
     aiBtn.addEventListener('click', () => window.BTD_UI.openAiAssistantModal());
-  }
-
-  const loginBtn = document.getElementById('home-open-login');
-  if (loginBtn && window.BTD_UI.openLoginChoiceModal) {
-    loginBtn.addEventListener('click', () => window.BTD_UI.openLoginChoiceModal());
   }
 };
