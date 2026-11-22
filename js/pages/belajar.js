@@ -40,7 +40,7 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
       window.speechSynthesis.getVoices();
       if ('onvoiceschanged' in window.speechSynthesis) {
         window.speechSynthesis.onvoiceschanged = () => {
-          try { window.speechSynthesis.getVoices(); } catch (e) {}
+          try { window.speechSynthesis.getVoices(); } catch (e) { }
         };
       }
     }
@@ -1990,19 +1990,19 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
     const isUmrah = manasikMode === 'umrah';
     const track = isUmrah
       ? [
-          { title: '1. Miqat Makani', badge: 'Ihram Aktif', desc: 'Mandi sunnah, pakai kain ihram, lafalkan niat Umrah di Miqat (misal Bir Ali / Yalamlam), lalu perbanyak Talbiyah sepanjang jalan.' },
-          { title: '2. Masjidil Haram (Thawaf 7×)', badge: 'Ka\'bah Di Kiri', desc: 'Suci berwudhu, mulai sejajar Hajar Aswad 7 putaran berlawanan jarum jam tanpa memotong dalam Hijr Ismail, lalu shalat 2 rakaat Maqam Ibrahim.' },
-          { title: '3. Bukit Shafa–Marwah (Sa\'i 7×)', badge: 'Berakhir Di Marwah', desc: 'Mulai di Shafa (1) menuju Marwah (2) hingga lintasan ke-7 berakhir di Marwah; laki-laki lari kecil di area lampu hijau.' },
-          { title: '4. Tahallul (Cukur Rambut)', badge: 'Larangan Ihram Gugur', desc: 'Memotong/mencukur rambut minimal 3 helai (halq lebih utama bagi laki-laki). Rangkaian Umrah selesai dan kembali halal.' }
-        ]
+        { title: '1. Miqat Makani', badge: 'Ihram Aktif', desc: 'Mandi sunnah, pakai kain ihram, lafalkan niat Umrah di Miqat (misal Bir Ali / Yalamlam), lalu perbanyak Talbiyah sepanjang jalan.' },
+        { title: '2. Masjidil Haram (Thawaf 7×)', badge: 'Ka\'bah Di Kiri', desc: 'Suci berwudhu, mulai sejajar Hajar Aswad 7 putaran berlawanan jarum jam tanpa memotong dalam Hijr Ismail, lalu shalat 2 rakaat Maqam Ibrahim.' },
+        { title: '3. Bukit Shafa–Marwah (Sa\'i 7×)', badge: 'Berakhir Di Marwah', desc: 'Mulai di Shafa (1) menuju Marwah (2) hingga lintasan ke-7 berakhir di Marwah; laki-laki lari kecil di area lampu hijau.' },
+        { title: '4. Tahallul (Cukur Rambut)', badge: 'Larangan Ihram Gugur', desc: 'Memotong/mencukur rambut minimal 3 helai (halq lebih utama bagi laki-laki). Rangkaian Umrah selesai dan kembali halal.' }
+      ]
       : [
-          { title: '1. Miqat & Umrah Awal (Tamattu\')', badge: 'Masuk Makkah', desc: 'Berihram Umrah dari Miqat, Thawaf, Sa\'i, & Tahallul; lalu menanti tanggal 8 Dzulhijjah dalam keadaan tidak terikat larangan ihram.' },
-          { title: '2. 8 Dzulhijjah (Tarwiyah di Mina)', badge: 'Ihram Haji Aktif', desc: 'Mengenakan kain ihram kembali dengan niat Haji dari Makkah menuju perkemahan Mina untuk bermalam (sunnah).' },
-          { title: '3. 9 Dzulhijjah (Wukuf Arafah)', badge: 'Rukun Utama Haji', desc: 'Berada di Padang Arafah sejak Dzuhur hingga terbenam matahari. Shalat Dzuhur+Ashar Jama\' Taqdim Qashar dan berdoa khusyuk.' },
-          { title: '4. Malam 10 Dzulhijjah (Mabit Muzdalifah)', badge: 'Ambil Kerikil', desc: 'Singgah malam di Muzdalifah sehabis Maghrib hingga melewati tengah malam sambil mengumpulkan kerikil kecil.' },
-          { title: '5. 10 Dzulhijjah (Jumrah Aqabah & Tahallul Awal)', badge: 'Mina & Sembelih Dam', desc: 'Melontar Jumrah Aqabah 7 kerikil, membayar Dam Tamattu\'/Hadyu, & mencukur rambut; dilanjutkan ke Makkah untuk Thawaf Ifadhah & Sa\'i.' },
-          { title: '6. 11–13 Dzulhijjah (Hari Tasyrik & Thawaf Wada\')', badge: 'Sempurna Manasik', desc: 'Mabit Mina & melontar 3 Jumrah (Ula, Wustha, Aqabah masing-masing 7 kerikil). Sebelum pulang tinggalkan Makkah, kerjakan Thawaf Wada\'.' }
-        ];
+        { title: '1. Miqat & Umrah Awal (Tamattu\')', badge: 'Masuk Makkah', desc: 'Berihram Umrah dari Miqat, Thawaf, Sa\'i, & Tahallul; lalu menanti tanggal 8 Dzulhijjah dalam keadaan tidak terikat larangan ihram.' },
+        { title: '2. 8 Dzulhijjah (Tarwiyah di Mina)', badge: 'Ihram Haji Aktif', desc: 'Mengenakan kain ihram kembali dengan niat Haji dari Makkah menuju perkemahan Mina untuk bermalam (sunnah).' },
+        { title: '3. 9 Dzulhijjah (Wukuf Arafah)', badge: 'Rukun Utama Haji', desc: 'Berada di Padang Arafah sejak Dzuhur hingga terbenam matahari. Shalat Dzuhur+Ashar Jama\' Taqdim Qashar dan berdoa khusyuk.' },
+        { title: '4. Malam 10 Dzulhijjah (Mabit Muzdalifah)', badge: 'Ambil Kerikil', desc: 'Singgah malam di Muzdalifah sehabis Maghrib hingga melewati tengah malam sambil mengumpulkan kerikil kecil.' },
+        { title: '5. 10 Dzulhijjah (Jumrah Aqabah & Tahallul Awal)', badge: 'Mina & Sembelih Dam', desc: 'Melontar Jumrah Aqabah 7 kerikil, membayar Dam Tamattu\'/Hadyu, & mencukur rambut; dilanjutkan ke Makkah untuk Thawaf Ifadhah & Sa\'i.' },
+        { title: '6. 11–13 Dzulhijjah (Hari Tasyrik & Thawaf Wada\')', badge: 'Sempurna Manasik', desc: 'Mabit Mina & melontar 3 Jumrah (Ula, Wustha, Aqabah masing-masing 7 kerikil). Sebelum pulang tinggalkan Makkah, kerjakan Thawaf Wada\'.' }
+      ];
     const safeIdx = Math.min(track.length - 1, Math.max(0, manasikIdx));
     const cur = track[safeIdx];
 
@@ -2055,11 +2055,11 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
         </div>
         <div class="prak-audio-grid">
           ${examples
-            .map((ex) => {
-              const dots = Array.from({ length: dotCount(ex.pattern) })
-                .map(() => `<span class="prak-beat-dot"></span>`)
-                .join('');
-              return `<div class="prak-audio-card" id="${escapeHtml(ex.id)}">
+        .map((ex) => {
+          const dots = Array.from({ length: dotCount(ex.pattern) })
+            .map(() => `<span class="prak-beat-dot"></span>`)
+            .join('');
+          return `<div class="prak-audio-card" id="${escapeHtml(ex.id)}">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px;flex-wrap:wrap;">
                   <span class="tag tag-emerald">${escapeHtml(ex.hukum)}</span>
                   <span class="tag tag-gold" style="font-size:11px;">Huruf: ${escapeHtml(ex.huruf)}</span>
@@ -2076,8 +2076,8 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
                   <button type="button" class="prak-audio-btn" data-play-tajwid="${escapeHtml(ex.id)}">🔊 Putar Suara Qari</button>
                 </div>
               </div>`;
-            })
-            .join('')}
+        })
+        .join('')}
         </div>
       </div>
     `;
@@ -2092,10 +2092,10 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
         <p style="margin:0;font-size:14px;font-weight:600;color:var(--slate-900);">${escapeHtml(quiz.question)}</p>
         <div class="prak-quiz-opts">
           ${(quiz.options || [])
-            .map(
-              (opt, idx) => `<button type="button" class="prak-quiz-opt" data-quiz-idx="${idx}">${String.fromCharCode(65 + idx)}. ${escapeHtml(opt.text)}</button>`
-            )
-            .join('')}
+        .map(
+          (opt, idx) => `<button type="button" class="prak-quiz-opt" data-quiz-idx="${idx}">${String.fromCharCode(65 + idx)}. ${escapeHtml(opt.text)}</button>`
+        )
+        .join('')}
         </div>
         <div id="prak-quiz-feedback" class="callout" style="margin-top:12px;" hidden></div>
       </div>
@@ -2446,17 +2446,17 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
           </a>
         </div>
         ${embedSrc
-          ? `<div class="embed-frame" style="margin-bottom:8px;">
+        ? `<div class="embed-frame" style="margin-bottom:8px;">
               <iframe src="${escapeHtml(embedSrc)}" title="Video Referensi ${escapeHtml(cfg.judul || topic.title)}" allowfullscreen loading="lazy"></iframe>
             </div>
             <small style="color:var(--slate-600);display:block;">Video rujukan di atas selaras dengan standar materi Kementerian Agama RI / Bimas Islam / Ditjen PHU / LPMQ dan dapat diperbarui Guru lewat Panel Admin.</small>`
-          : `<div class="callout callout-gold" style="margin:0;">
+        : `<div class="callout callout-gold" style="margin:0;">
               <strong>📺 Video Rekomendasi Tersedia via YouTube Resmi Kemenag:</strong>
               <p style="margin:6px 0 10px;font-size:13.5px;color:var(--slate-700);">
                 Klik tombol <strong>Cari Video Resmi Kemenag di YouTube ↗</strong> di kanan atas untuk menonton peragaan praktik yang terkurasi, atau Guru dapat menempelkan URL YouTube langsung melalui menu <strong>Panel Guru → Ayo Belajar</strong>.
               </p>
             </div>`
-        }
+      }
       </div>
     `;
   }
@@ -2527,10 +2527,10 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
 
           <div style="display:flex;flex-direction:column;gap:10px;max-height:520px;overflow-y:auto;">
             ${topicComments.length === 0
-              ? `<div class="callout" style="margin:0;">Belum ada komentar pada materi <strong>${escapeHtml(cfg.judul || topic.title)}</strong>. Jadilah yang pertama menulis pertanyaan atau refleksi positif!</div>`
-              : topicComments
-                  .map(
-                    (c) => `<div style="padding:13px 15px;border-radius:12px;background:#ffffff;border:1px solid var(--slate-200);border-left:4px solid var(--theme-c2);">
+        ? `<div class="callout" style="margin:0;">Belum ada komentar pada materi <strong>${escapeHtml(cfg.judul || topic.title)}</strong>. Jadilah yang pertama menulis pertanyaan atau refleksi positif!</div>`
+        : topicComments
+          .map(
+            (c) => `<div style="padding:13px 15px;border-radius:12px;background:#ffffff;border:1px solid var(--slate-200);border-left:4px solid var(--theme-c2);">
                         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
                           <div>
                             <strong style="font-size:14px;color:var(--slate-900);">${escapeHtml(maskProf(c.nama || 'Pengunjung'))}</strong>
@@ -2542,9 +2542,9 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
                         </div>
                         <p style="margin:0;font-size:13.6px;color:var(--slate-800);line-height:1.55;white-space:pre-line;">${escapeHtml(maskProf(c.komentar || ''))}</p>
                       </div>`
-                  )
-                  .join('')
-            }
+          )
+          .join('')
+      }
           </div>
         </div>
       </div>
@@ -2586,7 +2586,7 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
 
       <div class="container">
         <div class="prak-ref-bar">
-          <span><strong>🛡️ Referensi Baku &amp; Aman:</strong> Mengacu pada Kurikulum PAI Kemenag RI, LPMQ Standar Indonesia, &amp; BAZNAS RI (konten statis read-only tanpa akses ubah server).</span>
+          <span><strong>🛡️ Referensi :</strong> Mengacu pada Kurikulum PAI Kemenag RI, LPMQ Standar Indonesia, &amp; BAZNAS RI.</span>
           <span class="tag tag-emerald">Ilmu Umum Terstandar</span>
         </div>
 
@@ -2594,7 +2594,7 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
           <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
             <div>
               <h2 style="margin:0 0 4px;font-size:19px;">📚 Pilih Bidang Praktikum PAI</h2>
-              <p style="margin:0;color:var(--slate-600);font-size:13.8px;">Klik salah satu kartu di bawah untuk masuk ke pilihan sub-materi, simulasi praktik, dan contoh suara.</p>
+              <p style="margin:0;color:var(--slate-600);font-size:13.8px;">Klik salah satu kartu di bawah untuk masuk ke pilihan sub-materi, simulasi praktik, dan contoh bacaan.</p>
             </div>
             <div style="display:flex;gap:8px;align-items:center;flex:1;max-width:340px;min-width:220px;">
               <input id="belajar-search" type="search" class="input" aria-label="Cari materi praktikum" placeholder="Cari wudhu, jenazah, zakat, ikhfa, iqlab..." value="${escapeHtml(searchQuery)}" />
@@ -2602,25 +2602,25 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
           </div>
 
           ${q
-            ? `<div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--slate-200);">
+        ? `<div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--slate-200);">
                 <strong style="display:block;margin-bottom:10px;color:var(--emerald-900);">Hasil Pencarian "${escapeHtml(searchQuery)}" (${searchHits.length} topik):</strong>
                 ${searchHits.length === 0
-                  ? `<div class="callout callout-gold">Tidak ada topik praktikum yang cocok dengan kata kunci tersebut.</div>`
-                  : `<div class="grid grid-3">
+          ? `<div class="callout callout-gold">Tidak ada topik praktikum yang cocok dengan kata kunci tersebut.</div>`
+          : `<div class="grid grid-3">
                       ${searchHits
-                        .map(({ cat, top, rCfg }) => {
-                          const hitTitle = (rCfg && rCfg.judul) || top.title;
-                          const bg = buildCardBgLayers(rCfg && rCfg.coverImage, hitTitle);
-                          const hitInner = bg.cls
-                            ? renderBgSplitCard({
-                                icon: cat.icon,
-                                titleTag: 'h3',
-                                title: hitTitle,
-                                subtitle: top.summary,
-                                tagsHtml: `<span class="tag ${cat.tagClass}">${cat.icon} ${escapeHtml(cat.title)}</span>${doneMap[top.id] ? '<span class="tag tag-emerald">✓ Selesai</span>' : ''}`,
-                                footerHtml: `<small>${escapeHtml(top.badge || '')}</small><button type="button" class="btn btn-primary btn-sm" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}">Buka Panduan →</button>`
-                              })
-                            : `
+            .map(({ cat, top, rCfg }) => {
+              const hitTitle = (rCfg && rCfg.judul) || top.title;
+              const bg = buildCardBgLayers(rCfg && rCfg.coverImage, hitTitle);
+              const hitInner = bg.cls
+                ? renderBgSplitCard({
+                  icon: cat.icon,
+                  titleTag: 'h3',
+                  title: hitTitle,
+                  subtitle: top.summary,
+                  tagsHtml: `<span class="tag ${cat.tagClass}">${cat.icon} ${escapeHtml(cat.title)}</span>${doneMap[top.id] ? '<span class="tag tag-emerald">✓ Selesai</span>' : ''}`,
+                  footerHtml: `<small>${escapeHtml(top.badge || '')}</small><button type="button" class="btn btn-primary btn-sm" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}">Buka Panduan →</button>`
+                })
+                : `
                             <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;">
                               <span class="tag ${cat.tagClass}">${cat.icon} ${escapeHtml(cat.title)}</span>
                               ${doneMap[top.id] ? '<span class="tag tag-emerald">✓ Selesai</span>' : ''}
@@ -2629,40 +2629,40 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
                             <p style="margin:0 0 12px;font-size:13px;color:rgba(255,255,255,0.92);flex:1;">${escapeHtml(top.summary)}</p>
                             <button type="button" class="btn btn-primary btn-sm" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}">Buka Panduan &amp; Simulasi →</button>
                             `;
-                          return `<article class="card card-hover class-picker-card ${cat.tone} ${bg.cls}" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}" role="button" tabindex="0">
+              return `<article class="card card-hover class-picker-card ${cat.tone} ${bg.cls}" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}" role="button" tabindex="0">
                             ${bg.open}
                             ${hitInner}
                             ${bg.close}
                           </article>`;
-                        })
-                        .join('')}
+            })
+            .join('')}
                     </div>`
-                }
+        }
               </div>`
-            : ''
-          }
+        : ''
+      }
         </div>
 
         <div class="grid grid-3" style="margin-bottom:22px;">
           ${CATEGORIES.map((cat) => {
-            const doneCount = countDoneInCategory(cat, doneMap);
-            const catCfg = getCategoryRuntimeCfg(cat);
-            const catTitle = (catCfg && catCfg.judul) || cat.title;
-            const bg = buildCardBgLayers(catCfg && catCfg.coverImage, catTitle);
-            const topicPillsHtml = `${cat.topics
-              .slice(0, 3)
-              .map((t) => `<span class="tag tag-slate" style="font-size:11px;">${escapeHtml(getRuntimeCfg(t).judul.replace(/^\d+\.\s*/, ''))}</span>`)
-              .join('')}${cat.topics.length > 3 ? `<span class="tag tag-slate" style="font-size:11px;">+${cat.topics.length - 3} lagi</span>` : ''}`;
-            const catInner = bg.cls
-              ? renderBgSplitCard({
-                  icon: cat.icon,
-                  titleTag: 'h3',
-                  title: catTitle,
-                  subtitle: cat.subtitle,
-                  tagsHtml: `<span class="tag ${cat.tagClass}">${cat.topics.length} Modul Praktikum</span>${topicPillsHtml}`,
-                  footerHtml: `<small>${doneCount}/${cat.topics.length} dipelajari</small><button type="button" class="btn btn-primary btn-sm" data-open-cat="${escapeHtml(cat.id)}">Pilih Topik →</button>`
-                })
-              : `
+        const doneCount = countDoneInCategory(cat, doneMap);
+        const catCfg = getCategoryRuntimeCfg(cat);
+        const catTitle = (catCfg && catCfg.judul) || cat.title;
+        const bg = buildCardBgLayers(catCfg && catCfg.coverImage, catTitle);
+        const topicPillsHtml = `${cat.topics
+          .slice(0, 3)
+          .map((t) => `<span class="tag tag-slate" style="font-size:11px;">${escapeHtml(getRuntimeCfg(t).judul.replace(/^\d+\.\s*/, ''))}</span>`)
+          .join('')}${cat.topics.length > 3 ? `<span class="tag tag-slate" style="font-size:11px;">+${cat.topics.length - 3} lagi</span>` : ''}`;
+        const catInner = bg.cls
+          ? renderBgSplitCard({
+            icon: cat.icon,
+            titleTag: 'h3',
+            title: catTitle,
+            subtitle: cat.subtitle,
+            tagsHtml: `<span class="tag ${cat.tagClass}">${cat.topics.length} Modul Praktikum</span>${topicPillsHtml}`,
+            footerHtml: `<small>${doneCount}/${cat.topics.length} dipelajari</small><button type="button" class="btn btn-primary btn-sm" data-open-cat="${escapeHtml(cat.id)}">Pilih Topik →</button>`
+          })
+          : `
                 <div class="quick-bento-top">
                   <span class="quick-bento-icon" style="background:rgba(255,255,255,0.85);">${cat.icon}</span>
                   <span class="tag ${cat.tagClass}">${cat.topics.length} Modul Praktikum</span>
@@ -2679,14 +2679,14 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
                   <button type="button" class="btn btn-primary btn-sm" data-open-cat="${escapeHtml(cat.id)}">Pilih Topik →</button>
                 </div>
               `;
-            return `
+        return `
               <article class="card card-hover class-picker-card ${cat.tone} ${bg.cls}" data-open-cat="${escapeHtml(cat.id)}" role="button" tabindex="0">
                 ${bg.open}
                 ${catInner}
                 ${bg.close}
               </article>
             `;
-          }).join('')}
+      }).join('')}
         </div>
 
         <div class="card">
@@ -2769,24 +2769,24 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
 
         <div class="grid grid-2">
           ${cat.topics
-            .map((top, idx) => {
-              const tone = subTones[idx % subTones.length];
-              const isDone = Boolean(doneMap[top.id]);
-              const rCfg = getRuntimeCfg(top);
-              const displayTitle = (rCfg && rCfg.judul) || top.title;
-              const bg = buildCardBgLayers(rCfg && rCfg.coverImage, displayTitle);
-              const topicMetaSmall = `<small style="color:#ffffff;font-weight:700;">📋 ${(top.steps || []).length} Langkah${top.audioExamples ? ' • 🔊 Contoh Suara' : ''}${top.isZakatSimulator ? ' • 🧮 Kalkulator' : ''}${rCfg.youtubeId ? ' • 🎬 Video' : ''}${rCfg.coverImage ? ' • 🖼️ Foto Latar' : ''}</small>`;
-              const topicStatusTag = isDone ? '<span class="tag tag-emerald">✓ Sudah Dipelajari</span>' : '<span class="tag tag-slate">Belum Ditandai</span>';
-              const topicInner = bg.cls
-                ? renderBgSplitCard({
-                    icon: cat.icon,
-                    titleTag: 'h2',
-                    title: displayTitle,
-                    subtitle: top.summary,
-                    tagsHtml: `<span class="tag ${cat.tagClass}">${escapeHtml(top.badge)}</span>${topicStatusTag}`,
-                    footerHtml: `${topicMetaSmall}<button type="button" class="btn btn-primary btn-sm" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}">Pelajari →</button>`
-                  })
-                : `
+        .map((top, idx) => {
+          const tone = subTones[idx % subTones.length];
+          const isDone = Boolean(doneMap[top.id]);
+          const rCfg = getRuntimeCfg(top);
+          const displayTitle = (rCfg && rCfg.judul) || top.title;
+          const bg = buildCardBgLayers(rCfg && rCfg.coverImage, displayTitle);
+          const topicMetaSmall = `<small style="color:#ffffff;font-weight:700;">📋 ${(top.steps || []).length} Langkah${top.audioExamples ? ' • 🔊 Contoh Suara' : ''}${top.isZakatSimulator ? ' • 🧮 Kalkulator' : ''}${rCfg.youtubeId ? ' • 🎬 Video' : ''}${rCfg.coverImage ? ' • 🖼️ Foto Latar' : ''}</small>`;
+          const topicStatusTag = isDone ? '<span class="tag tag-emerald">✓ Sudah Dipelajari</span>' : '<span class="tag tag-slate">Belum Ditandai</span>';
+          const topicInner = bg.cls
+            ? renderBgSplitCard({
+              icon: cat.icon,
+              titleTag: 'h2',
+              title: displayTitle,
+              subtitle: top.summary,
+              tagsHtml: `<span class="tag ${cat.tagClass}">${escapeHtml(top.badge)}</span>${topicStatusTag}`,
+              footerHtml: `${topicMetaSmall}<button type="button" class="btn btn-primary btn-sm" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}">Pelajari →</button>`
+            })
+            : `
                   <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
                     <span class="tag ${cat.tagClass}">${escapeHtml(top.badge)}</span>
                     ${topicStatusTag}
@@ -2800,15 +2800,15 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
                     <button type="button" class="btn btn-primary btn-sm" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}">Pelajari Lengkap →</button>
                   </div>
                 `;
-              return `
+          return `
                 <article class="card card-hover class-picker-card ${tone} ${bg.cls}" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}" role="button" tabindex="0">
                   ${bg.open}
                   ${topicInner}
                   ${bg.close}
                 </article>
               `;
-            })
-            .join('')}
+        })
+        .join('')}
         </div>
       </div>
     `;
@@ -2864,28 +2864,28 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
         ${renderYoutubeReferenceCard(topic, rCfg)}
 
         ${topic.prayers && topic.prayers.length
-          ? `<div class="card" style="margin-bottom:18px;">
+        ? `<div class="card" style="margin-bottom:18px;">
               <h2 style="margin:0 0 12px;font-size:19px;">🤲 Lafal Niat, Bacaan &amp; Doa</h2>
               ${topic.prayers
-                .map((p, pIdx) => {
-                  const customAud = (rCfg && rCfg.prayerAudios && rCfg.prayerAudios[String(pIdx)]) || '';
-                  const sourceTag = customAud
-                    ? `<span class="tag tag-sky">🎙️ Suara Asli Guru</span>`
-                    : p.quranRef
-                    ? `<span class="tag tag-sky">📖 ${escapeHtml(p.quranRef)}</span>`
-                    : p.hisnMatch
-                    ? `<span class="tag tag-sky">🎙️ ${escapeHtml(p.reciterLabel || 'Syaikh Hamad')}</span>`
-                    : p.audioUrl
+          .map((p, pIdx) => {
+            const customAud = (rCfg && rCfg.prayerAudios && rCfg.prayerAudios[String(pIdx)]) || '';
+            const sourceTag = customAud
+              ? `<span class="tag tag-sky">🎙️ Suara Asli Guru</span>`
+              : p.quranRef
+                ? `<span class="tag tag-sky">📖 ${escapeHtml(p.quranRef)}</span>`
+                : p.hisnMatch
+                  ? `<span class="tag tag-sky">🎙️ ${escapeHtml(p.reciterLabel || 'Syaikh Hamad')}</span>`
+                  : p.audioUrl
                     ? `<span class="tag tag-sky">🔊 Audio Arab Otomatis</span>`
                     : `<span class="tag tag-gold">🎙️ Audio Alternatif</span>`;
-                  const btnLabel = customAud
-                    ? '🔊 Putar Suara Guru'
-                    : p.surah || p.hisnMatch
-                    ? '🔊 Putar Suara Asli'
-                    : p.audioUrl
-                    ? '🔊 Putar Bacaan Arab'
-                    : '🔊 Putar Suara';
-                  return `<div class="prak-arab-card" id="prayer-card-${pIdx}">
+            const btnLabel = customAud
+              ? '🔊 Putar Suara Guru'
+              : p.surah || p.hisnMatch
+                ? '🔊 Putar Suara Asli'
+                : p.audioUrl
+                  ? '🔊 Putar Bacaan Arab'
+                  : '🔊 Putar Suara';
+            return `<div class="prak-arab-card" id="prayer-card-${pIdx}">
                     <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
                       <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
                         <span class="tag tag-emerald">${escapeHtml(p.label)}</span>
@@ -2897,11 +2897,11 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
                     <p style="margin:0 0 4px;font-size:13.8px;color:var(--emerald-900);font-weight:700;font-style:italic;">${escapeHtml(p.latin)}</p>
                     <p style="margin:0;font-size:13.2px;color:var(--slate-700);"><strong>Artinya:</strong> ${escapeHtml(p.arti)}</p>
                   </div>`;
-                })
-                .join('')}
+          })
+          .join('')}
             </div>`
-          : ''
-        }
+        : ''
+      }
 
         <div class="grid grid-2" style="margin-bottom:18px;">
           <div class="card">
@@ -2925,30 +2925,30 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
           <h2 style="margin:8px 0 14px;font-size:19.5px;">📋 Tata Cara Pelaksanaan</h2>
           <div class="prak-step-list">
             ${(topic.steps || [])
-              .map(
-                (st, i) => `<div class="prak-step-item">
+        .map(
+          (st, i) => `<div class="prak-step-item">
                   <div class="prak-step-num">${i + 1}</div>
                   <div class="prak-step-body">
                     <h4>${escapeHtml(st.title)}</h4>
                     <p>${escapeHtml(st.desc)}</p>
                   </div>
                 </div>`
-              )
-              .join('')}
+        )
+        .join('')}
           </div>
         </div>
 
         ${topic.quiz ? renderScenarioQuiz(topic.quiz) : ''}
 
         ${topic.warnings && topic.warnings.length
-          ? `<div class="card" style="margin-bottom:18px;border-color:#fda4af;background:#fff1f2;">
+        ? `<div class="card" style="margin-bottom:18px;border-color:#fda4af;background:#fff1f2;">
               <h3 style="margin:0 0 8px;color:#be123c;">⚠️ Hal yang Membatalkan &amp; Perlu Diperhatikan</h3>
               <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:13.8px;color:#881337;line-height:1.55;">
                 ${topic.warnings.map((w) => `<li>${escapeHtml(w)}</li>`).join('')}
               </ul>
             </div>`
-          : ''
-        }
+        : ''
+      }
 
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
           <button type="button" class="btn ${isDone ? 'btn-gold' : 'btn-primary'}" id="btn-toggle-topic-done">
@@ -3122,7 +3122,7 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
         if (activeAudioEl) {
           try {
             activeAudioEl.playbackRate = selectedRate;
-          } catch (e) {}
+          } catch (e) { }
         }
         if (showToast) {
           showToast(selectedRate === 0.85 ? 'Kecepatan baca Qari: 0.85× (Lambat untuk latihan tajwid).' : 'Kecepatan baca Qari: 1.0× (Normal).');
