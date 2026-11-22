@@ -2437,22 +2437,22 @@
 
     const triggerGenjot = (e) => {
       const target = e && e.target;
-      const card = target && typeof target.closest === 'function'
-        ? target.closest('.card-hover, .mini-stat-card, .pilar-modern-card, .login-choice-card, .schedule-card, .card-wiggle-click')
-        : null;
+      if (!target || typeof target.closest !== 'function') return;
+      if (target.closest('input, textarea, select, option, [contenteditable="true"]')) return;
+      const card = target.closest('.card-hover, .mini-stat-card, .pilar-modern-card, .login-choice-card, .schedule-card, .card-wiggle-click');
       if (!card || !card.classList) return;
       const isWiggle = card.classList.contains('card-wiggle-click');
       const cls = isWiggle ? 'is-wiggle' : 'is-genjot';
       card.classList.remove('is-genjot', 'is-wiggle');
       void card.offsetWidth;
       card.classList.add(cls);
+      const clearMs = typeof window !== 'undefined' && window.innerWidth <= 680 ? 220 : 680;
       clearTimeout(card.__genjotTimer);
       card.__genjotTimer = setTimeout(() => {
         if (card && card.classList) card.classList.remove('is-genjot', 'is-wiggle');
-      }, 680);
+      }, clearMs);
     };
 
-    document.addEventListener('pointerdown', triggerGenjot, { passive: true });
     document.addEventListener('click', triggerGenjot, { passive: true });
   }
 
