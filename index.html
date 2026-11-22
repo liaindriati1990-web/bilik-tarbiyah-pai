@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description"
+    content="Bilik Tarbiyah Digital — Portal Pembelajaran Interaktif PAI & Budi Pekerti berbasis Deep Learning, Kurikulum Berbasis Cinta, dan Zero-Budget IT." />
+  <title>Bilik Tarbiyah Digital — Portal Pembelajaran PAI &amp; Budi Pekerti</title>
+  <style id="btd-anti-cj">
+    body {
+      display: none !important;
+    }
+  </style>
+  <script>
+    (function () {
+      if (window.self === window.top) {
+        var el = document.getElementById('btd-anti-cj');
+        if (el && el.parentNode) el.parentNode.removeChild(el);
+      } else {
+        try {
+          window.top.location = window.self.location;
+        } catch (e) {
+          document.documentElement.innerHTML = '';
+        }
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link id="app-favicon" rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230d5c46'/%3E%3Cpath d='M32 10l6.2 12.6L52 24.6l-10 9.8 2.4 13.8L32 41.7l-12.4 6.5L22 34.4l-10-9.8 13.8-2z' fill='%23f59e0b'/%3E%3Ccircle cx='32' cy='31' r='7' fill='%230d5c46'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css?v=20261122q" />
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <!-- Top Utility Bar -->
+  <div class="top-strip no-print">
+    <div class="container top-strip-inner">
+      <div class="top-strip-left">
+        <span class="badge-pill badge-emerald" id="sync-status-badge"
+          title="Status koneksi database Google Spreadsheet">
+          <span class="status-dot"></span>
+          <span id="sync-status-text">Mode Demo Lokal</span>
+        </span>
+        <span class="top-strip-meta" id="header-school-meta">SMAN 20 Tebo • TA 2026/2027</span>
+      </div>
+      <div class="top-strip-right">
+        <a href="https://smartpai.kemenag.go.id" target="_blank" rel="noopener noreferrer" class="top-link">
+          Buku Resmi Smart PAI Kemenag ↗
+        </a>
+        <button type="button" class="top-btn" id="btn-open-ai-assistant">
+          ✨ Asisten Belajar PAI
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header & Navigation -->
+  <header class="site-header no-print">
+    <div class="container header-inner">
+      <a href="#beranda" class="brand" data-nav="beranda">
+        <span class="brand-emblem" id="brand-emblem" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="38" height="38" fill="none">
+            <rect width="40" height="40" rx="11" fill="url(#brandGrad)" />
+            <path d="M20 7L24 15L32 16.2L26.2 21.8L27.6 30L20 26L12.4 30L13.8 21.8L8 16.2L16 15L20 7Z" stroke="#FCD34D"
+              stroke-width="1.8" fill="rgba(252,211,77,0.18)" />
+            <path d="M14 27.5C16.2 25.8 18.2 25.5 20 26.8C21.8 25.5 23.8 25.8 26 27.5" stroke="#FFFFFF"
+              stroke-width="1.8" stroke-linecap="round" />
+            <defs>
+              <linearGradient id="brandGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#064E3B" />
+                <stop offset="1" stop-color="#0F766E" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong id="brand-site-name">Bilik Tarbiyah Digital</strong>
+          <small id="brand-subtitle">Portal Pembelajaran PAI &amp; Budi Pekerti</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navigasi Utama" id="main-nav">
+        <a href="#beranda" class="nav-link" data-route="beranda">Beranda</a>
+        <a href="#belajar" class="nav-link" data-route="belajar">Ayo Belajar</a>
+        <a href="#materi" class="nav-link" data-route="materi">Ruang Materi</a>
+        <a href="#riwayat" class="nav-link" data-route="riwayat">Jadwal &amp; Riwayat</a>
+        <a href="#tentang" class="nav-link nav-about" data-route="tentang">Tentang Kami</a>
+        <button type="button" class="nav-link nav-login" id="btn-nav-login">🔐 Login</button>
+      </nav>
+
+      <div class="header-mobile-actions">
+        <button type="button" class="header-ai-btn" id="btn-header-ai" aria-label="Buka Asisten Belajar PAI">
+          <span aria-hidden="true">✨</span>
+          <span>Asisten Belajar PAI</span>
+        </button>
+
+        <button type="button" class="header-login-icon-btn" id="btn-header-login" aria-label="Login Guru atau Siswa"
+          title="Login Guru atau Siswa">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.1"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </button>
+
+        <button type="button" class="header-stu-logout-btn" id="btn-header-stu-logout"
+          aria-label="Keluar dari Akun Siswa" hidden>
+          <span aria-hidden="true">🚪</span>
+          <span>Keluar</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main-content">
+    <div class="loading-screen" id="initial-loader">
+      <div class="spinner"></div>
+      <p>Menyiapkan Bilik Tarbiyah Digital...</p>
+    </div>
+  </main>
+
+  <!-- Peta Lokasi Sekolah Memanjang di Atas Footer -->
+  <section id="school-map-band" class="school-map-band no-print" aria-label="Peta Lokasi Satuan Pendidikan" hidden>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer no-print">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-row">
+          <div class="footer-brand-logo" id="footer-logo-wrap" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="60" height="60" fill="none">
+              <rect width="40" height="40" rx="11" fill="url(#brandGrad)" />
+              <path d="M20 7L24 15L32 16.2L26.2 21.8L27.6 30L20 26L12.4 30L13.8 21.8L8 16.2L16 15L20 7Z"
+                stroke="#FCD34D" stroke-width="1.8" fill="rgba(252,211,77,0.18)" />
+              <path d="M14 27.5C16.2 25.8 18.2 25.5 20 26.8C21.8 25.5 23.8 25.8 26 27.5" stroke="#FFFFFF"
+                stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="footer-brand-copy">
+            <h3 id="footer-site-name">Bilik Tarbiyah Digital</h3>
+            <p id="footer-tagline">
+              Ekosistem Pembelajaran PAI &amp; Budi Pekerti berbasis <strong>Deep Learning</strong> dan
+              <strong>Kurikulum
+                Berbasis Cinta</strong> dengan infrastruktur <em>Zero-Budget IT</em>.
+            </p>
+            <p class="footer-teacher" id="footer-teacher-info">
+              Created by <strong>Lia Indriati, S.Pd.I., Gr.</strong> • Guru PAI-BP SMAN 20 Tebo
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Menu Pembelajaran</h4>
+        <ul>
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#belajar">Ayo Belajar (Praktikum PAI)</a></li>
+          <li><a href="#materi">Ruang Materi, Evaluasi &amp; Amaliyah</a></li>
+          <li><a href="#riwayat">Jadwal &amp; Riwayat Mengajar</a></li>
+          <li><a href="#siswa">Portal Siswa (Presensi &amp; Profil)</a></li>
+          <li><a href="#tentang?tab=galeri">Galeri Karya Siswa</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Tentang &amp; Akses</h4>
+        <ul>
+          <li><a href="#tentang">Tentang Kami &amp; Portofolio</a></li>
+          <li><a href="#tentang?tab=kontak">Kontak Sekolah &amp; Guru</a></li>
+          <li><a href="#tentang?tab=privasi">Kebijakan Privasi &amp; Dasar Hukum</a></li>
+          <li><button type="button" class="footer-link-btn" id="btn-footer-login">🔐 Login Guru / Siswa</button></li>
+          <li><a href="https://smartpai.kemenag.go.id" target="_blank" rel="noopener noreferrer">Smart PAI Kemenag
+              RI</a></li>
+          <li><a href="https://pendis.kemenag.go.id" target="_blank" rel="noopener noreferrer">Ditjen Pendis Kemenag</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 <span id="footer-copyright-name">Bilik Tarbiyah Digital</span>. Fokus Pembelajaran Pendidikan Agama
+          Islam &amp; Budi Pekerti.</span>
+        <span class="footer-arch-note">Created by : Lia Indriati, S.Pd.I., Gr.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Reusable Modal -->
+  <div class="modal-overlay no-print" id="app-modal" hidden>
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h3 id="modal-title">Detail</h3>
+        <button type="button" class="icon-btn" id="modal-close" aria-label="Tutup dialog">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Dedicated Image Crop Modal Overlay (di atas #app-modal) -->
+  <div class="modal-overlay crop-modal-overlay no-print" id="crop-modal" hidden>
+    <div class="modal-backdrop" id="crop-modal-backdrop"></div>
+    <div class="modal-dialog modal-lg" role="dialog" aria-modal="true" aria-labelledby="crop-modal-title">
+      <div class="modal-header">
+        <h3 id="crop-modal-title">Potong Gambar</h3>
+        <button type="button" class="icon-btn" id="crop-modal-close" aria-label="Tutup pemotong gambar">✕</button>
+      </div>
+      <div class="modal-body" id="crop-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Document / PDF Iframe Preview Modal (di atas #app-modal) -->
+  <div class="modal-overlay pdf-preview-modal-overlay no-print" id="pdf-preview-modal" hidden>
+    <div class="modal-backdrop" id="pdf-preview-backdrop"></div>
+    <div class="modal-dialog modal-xl" role="dialog" aria-modal="true" aria-labelledby="pdf-preview-title">
+      <div class="modal-header">
+        <h3 id="pdf-preview-title">📄 Pratinjau Dokumen PDF</h3>
+        <button type="button" class="icon-btn" id="pdf-preview-close" aria-label="Tutup pratinjau dokumen">✕</button>
+      </div>
+      <div class="modal-body" id="pdf-preview-body"></div>
+    </div>
+  </div>
+
+  <!-- Floating Image Lightbox Modal (di atas #app-modal agar tidak menimpa form aktif) -->
+  <div class="modal-overlay lightbox-modal-overlay no-print" id="lightbox-modal" hidden>
+    <div class="modal-backdrop" id="lightbox-backdrop"></div>
+    <div class="modal-dialog modal-lg" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+      <div class="modal-header">
+        <h3 id="lightbox-title">🖼️ Pratinjau Foto</h3>
+        <button type="button" class="icon-btn" id="lightbox-close" aria-label="Tutup pratinjau foto">✕</button>
+      </div>
+      <div class="modal-body" id="lightbox-body"></div>
+    </div>
+  </div>
+
+  <!-- Global Confirmation Modal Overlay (di atas #app-modal & #crop-modal) -->
+  <div class="modal-overlay confirm-modal-overlay no-print" id="confirm-modal" hidden>
+    <div class="modal-backdrop" id="confirm-modal-backdrop"></div>
+    <div class="modal-dialog confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirm-modal-title">
+      <div class="confirm-dialog-body">
+        <div class="confirm-icon-wrap" id="confirm-icon-wrap" aria-hidden="true">🗑️</div>
+        <h3 id="confirm-modal-title">Konfirmasi Hapus Data</h3>
+        <p class="confirm-message" id="confirm-modal-message">Apakah Anda yakin akan menghapus data ini?</p>
+        <div class="confirm-item-preview" id="confirm-modal-item" hidden></div>
+        <div class="confirm-loading-note" id="confirm-modal-loading" hidden>
+          <span class="spinner-inline dark"></span>
+          <span id="confirm-loading-text">Sedang menghapus data, mohon tunggu...</span>
+        </div>
+        <div class="confirm-actions">
+          <button type="button" class="btn btn-outline" id="confirm-btn-cancel">TIDAK</button>
+          <button type="button" class="btn btn-danger" id="confirm-btn-yes">YA, Hapus</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile App Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav no-print" id="mobile-bottom-nav" aria-label="Navigasi Bawah Aplikasi">
+    <a href="#belajar" class="bottom-nav-item" data-route="belajar" aria-label="Ayo Belajar Praktikum PAI"
+      title="Ayo Belajar (Praktikum PAI)">
+      <span class="bottom-nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="M6 10.5V16c0 1.8 2.7 3.2 6 3.2s6-1.4 6-3.2v-5.5" />
+          <path d="M22 7v6" />
+        </svg>
+      </span>
+      <span class="bottom-nav-label"><span class="bn-ext">Ayo </span>Belajar</span>
+    </a>
+
+    <a href="#materi" class="bottom-nav-item" data-route="materi" aria-label="Ruang Materi" title="Ruang Materi PAI">
+      <span class="bottom-nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+        </svg>
+      </span>
+      <span class="bottom-nav-label">Materi</span>
+    </a>
+
+    <a href="#beranda" class="bottom-nav-item is-center" data-route="beranda" aria-label="Beranda Utama"
+      title="Beranda">
+      <span class="bottom-nav-center-orb" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 10.5L12 3l9 7.5" />
+          <path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" />
+        </svg>
+      </span>
+      <span class="bottom-nav-label">Beranda</span>
+    </a>
+
+    <a href="#riwayat" class="bottom-nav-item" data-route="riwayat" aria-label="Jadwal dan Riwayat"
+      title="Jadwal &amp; Riwayat Pembelajaran">
+      <span class="bottom-nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+      </span>
+      <span class="bottom-nav-label">Jadwal</span>
+    </a>
+
+    <a href="#tentang" class="bottom-nav-item" data-route="tentang" aria-label="Tentang Kami" title="Tentang Kami">
+      <span class="bottom-nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9.5" />
+          <line x1="12" y1="16" x2="12" y2="11.5" />
+          <circle cx="12" cy="8" r="0.7" fill="currentColor" />
+        </svg>
+      </span>
+      <span class="bottom-nav-label">Tentang<span class="bn-ext"> Kami</span></span>
+    </a>
+  </nav>
+
+  <!-- Native-Style Bottom Navigation Bar Khusus Akun Siswa (Mobile Only) -->
+  <nav class="mobile-bottom-nav mobile-bottom-nav-student no-print" id="student-bottom-nav"
+    aria-label="Menu Bawah Akun Siswa" hidden>
+    <button type="button" class="bottom-nav-item" data-stu-bottom-tab="jadwal" aria-label="Jadwal dan Riwayat"
+      title="Jadwal &amp; Riwayat">
+      <span class="bottom-nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+      </span>
+      <span class="bottom-nav-label">Jadwal</span>
+    </button>
+
+    <button type="button" class="bottom-nav-item" data-stu-bottom-tab="materi" aria-label="Materi Kelas"
+      title="Materi Kelas Saya">
+      <span class="bottom-nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+        </svg>
+      </span>
+      <span class="bottom-nav-label" id="stu-bn-materi-label">Materi</span>
+    </button>
+
+    <button type="button" class="bottom-nav-item is-center" data-stu-bottom-tab="dashboard" aria-label="Dashboard Siswa"
+      title="Dashboard Siswa">
+      <span class="bottom-nav-center-orb" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2.1"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="14" width="7" height="7" rx="1.5" />
+          <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        </svg>
+      </span>
+      <span class="bottom-nav-label">Dashboard</span>
+    </button>
+
+    <button type="button" class="bottom-nav-item" data-stu-bottom-tab="nilai" aria-label="Rekap Nilai"
+      title="Rekap Nilai Saya">
+      <span class="bottom-nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 21h8" />
+          <path d="M12 17v4" />
+          <path d="M7 4h10v5a5 5 0 0 1-10 0V4z" />
+          <path d="M7 6H4a2 2 0 0 0 0 4h3" />
+          <path d="M17 6h3a2 2 0 0 1 0 4h-3" />
+        </svg>
+      </span>
+      <span class="bottom-nav-label">Nilai</span>
+    </button>
+
+    <button type="button" class="bottom-nav-item" data-stu-bottom-tab="profil" aria-label="Profil Saya"
+      title="Profil Peserta Didik">
+      <span class="bottom-nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      </span>
+      <span class="bottom-nav-label">Profil</span>
+    </button>
+  </nav>
+
+  <!-- Floating Scroll To Top Button -->
+  <button type="button" class="scroll-top-btn no-print" id="btn-scroll-top" aria-label="Scroll ke atas"
+    title="Kembali ke Atas" hidden>
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <!-- Center Alert / Notification Overlay -->
+  <div class="toast-container no-print" id="toast-container" aria-live="polite"></div>
+
+  <!-- SheetJS untuk Import Excel/CSV & ExcelJS untuk Ekspor Presensi Excel Rapi (Border & Merge) -->
+  <script defer src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+
+  <!-- Modular Vanilla JS (No Build Step Needed — Works on GitHub Pages & Local) -->
+  <script defer src="js/config.js?v=20261122q"></script>
+  <script defer src="js/seed-data.js?v=20261122q"></script>
+  <script defer src="js/api.js?v=20261122q"></script>
+  <script defer src="js/components.js?v=20261122q"></script>
+  <script defer src="js/pages/beranda.js?v=20261122q"></script>
+  <script defer src="js/pages/belajar.js?v=20261122q"></script>
+  <script defer src="js/pages/materi.js?v=20261122q"></script>
+  <script defer src="js/pages/riwayat.js?v=20261122q"></script>
+  <script defer src="js/pages/evaluasi.js?v=20261122q"></script>
+  <script defer src="js/pages/presensi.js?v=20261122q"></script>
+  <script defer src="js/pages/galeri.js?v=20261122q"></script>
+  <script defer src="js/pages/tentang.js?v=20261122q"></script>
+  <script defer src="js/pages/siswa.js?v=20261122q"></script>
+  <script defer src="js/pages/admin.js?v=20261122q"></script>
+  <script defer src="js/app.js?v=20261122q"></script>
+</body>
+
+</html>
