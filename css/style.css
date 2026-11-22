@@ -73,6 +73,12 @@ section,
   scroll-margin-top: 84px;
 }
 
+html {
+  max-width: 100%;
+  overflow-x: clip;
+  touch-action: manipulation;
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -81,7 +87,9 @@ body {
   color: var(--slate-800);
   background: var(--bg-page);
   -webkit-font-smoothing: antialiased;
+  max-width: 100%;
   overflow-x: clip;
+  touch-action: manipulation;
 }
 
 img {
@@ -1584,12 +1592,13 @@ textarea {
   align-items: center;
   gap: 12px;
   margin-top: 16px;
-  padding: 9px 14px;
+  padding: 10px 15px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.13);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: linear-gradient(135deg, rgba(6, 78, 59, 0.78) 0%, rgba(13, 148, 136, 0.66) 58%, rgba(217, 119, 6, 0.48) 100%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(253, 230, 138, 0.38);
+  box-shadow: 0 10px 26px rgba(2, 20, 15, 0.28);
   cursor: pointer;
   color: inherit;
   text-decoration: none;
@@ -1598,8 +1607,9 @@ textarea {
 .teacher-chip:hover {
   text-decoration: none;
   color: inherit;
-  background: rgba(255, 255, 255, 0.19);
-  border-color: rgba(253, 230, 138, 0.55);
+  background: linear-gradient(135deg, rgba(6, 95, 70, 0.88) 0%, rgba(15, 118, 110, 0.78) 55%, rgba(245, 158, 11, 0.56) 100%);
+  border-color: rgba(253, 230, 138, 0.68);
+  box-shadow: 0 12px 30px rgba(2, 20, 15, 0.36);
 }
 
 .teacher-chip-cta {
@@ -1686,6 +1696,26 @@ textarea {
   transform: scale(1.04) rotate(1.5deg);
 }
 
+.teacher-identity-card {
+  background-color: var(--theme-c1, #042f24);
+  background-image:
+    radial-gradient(circle at 92% 14%, rgba(245, 158, 11, 0.34), transparent 48%),
+    radial-gradient(circle at 8% 92%, rgba(20, 184, 166, 0.28), transparent 50%),
+    linear-gradient(135deg, var(--theme-c1, #042f24) 0%, var(--theme-c2, #065f46) 52%, var(--theme-c3, #0f766e) 100%);
+  border-color: rgba(253, 230, 138, 0.42);
+  color: #ffffff;
+}
+
+.kontak-teacher-card {
+  background: linear-gradient(145deg, #ffffff 0%, #fef3c7 52%, #d1fae5 100%);
+  border-color: #fcd34d;
+}
+
+.teacher-identity-card h2,
+.teacher-identity-card strong {
+  color: #ffffff;
+}
+
 .teacher-identity-head {
   display: flex;
   align-items: center;
@@ -1706,6 +1736,30 @@ textarea {
 }
 
 .teacher-identity-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.kontak-school-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 14px 0;
+  flex-wrap: wrap;
+}
+
+.kontak-school-head-meta {
+  flex: 1 1 190px;
+  min-width: 0;
+}
+
+.kontak-info-table th {
+  width: 155px;
+}
+
+.kontak-action-btns {
+  margin-top: 14px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -1835,15 +1889,13 @@ textarea {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(3, 18, 14, 0.88) 0%,
-    rgba(3, 18, 14, 0.62) 22%,
-    rgba(4, 24, 19, 0.03) 36%,
-    rgba(4, 24, 19, 0.02) 64%,
-    rgba(3, 18, 14, 0.66) 76%,
-    rgba(2, 12, 10, 0.94) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(3, 18, 14, 0.88) 0%,
+      rgba(3, 18, 14, 0.62) 22%,
+      rgba(4, 24, 19, 0.03) 36%,
+      rgba(4, 24, 19, 0.02) 64%,
+      rgba(3, 18, 14, 0.66) 76%,
+      rgba(2, 12, 10, 0.94) 100%);
 }
 
 .class-picker-card.prak-card-has-bg .prak-card-fg {
@@ -2344,15 +2396,19 @@ textarea {
 
 @keyframes cardSoftTap {
   0% {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
 
-  45% {
-    transform: scale(0.992);
+  38% {
+    transform: translateY(2px) scale(0.986);
+  }
+
+  74% {
+    transform: translateY(-3px) scale(1.008);
   }
 
   100% {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -2371,6 +2427,10 @@ textarea {
 .grid {
   display: grid;
   gap: 18px;
+}
+
+.grid>* {
+  min-width: 0;
 }
 
 .grid-2 {
@@ -4848,9 +4908,15 @@ tr:last-child td {
     line-height: 1.28;
   }
 
-  /* Khusus HP: kurangi goncangan/gerak kartu & tombol agar nyaman di mata saat diklik atau disentuh */
+  /* Khusus HP: gerak tipis lembut (tekan & angkat ringan, tanpa goyang miring) agar nyaman di mata */
+  .card {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
   .card-hover {
-    transition: transform 0.16s ease-out, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
   .card-hover:hover,
@@ -4867,7 +4933,7 @@ tr:last-child td {
   .login-choice-card:active,
   .schedule-card:active {
     transition: transform 0.08s ease-out;
-    transform: scale(0.992);
+    transform: translateY(2px) scale(0.986);
   }
 
   .card-hover.is-genjot,
@@ -4876,11 +4942,11 @@ tr:last-child td {
   .login-choice-card.is-genjot,
   .schedule-card.is-genjot,
   .card-wiggle-click.is-wiggle {
-    animation: cardSoftTap 0.2s ease-out;
+    animation: cardSoftTap 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .btn {
-    transition: transform 0.14s ease-out, background-color 0.16s ease, box-shadow 0.2s ease, border-color 0.16s ease;
+    transition: transform 0.16s ease-out, background-color 0.16s ease, box-shadow 0.2s ease, border-color 0.16s ease;
   }
 
   .btn:hover:not(:disabled) {
@@ -4888,7 +4954,101 @@ tr:last-child td {
   }
 
   .btn:active:not(:disabled) {
-    transform: scale(0.985);
+    transform: translateY(1.5px) scale(0.975);
+  }
+
+  /* Khusus HP: Tab Kontak Kami responsif anti-overflow & anti-zoom */
+  .kontak-school-card,
+  .kontak-teacher-card {
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .kontak-school-head {
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .kontak-school-head-meta h2 {
+    font-size: 18px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .kontak-table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .kontak-info-table,
+  .kontak-info-table tbody,
+  .kontak-info-table tr,
+  .kontak-info-table th,
+  .kontak-info-table td {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  .kontak-info-table tr {
+    border-bottom: 1px solid var(--slate-200);
+    padding: 6px 0;
+  }
+
+  .kontak-info-table tr:last-child {
+    border-bottom: none;
+  }
+
+  .kontak-info-table th {
+    background: transparent;
+    border-bottom: none;
+    white-space: normal;
+    font-size: 11.5px;
+    color: var(--slate-600);
+    padding: 4px 10px 2px;
+  }
+
+  .kontak-info-table td {
+    border-bottom: none;
+    font-size: 13.5px;
+    padding: 2px 10px 4px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .kontak-action-btns .btn {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 0;
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .kontak-teacher-card .teacher-showcase-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .kontak-teacher-card .teacher-showcase-photo {
+    margin: 0 auto;
+  }
+
+  .kontak-teacher-card .teacher-showcase-meta {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .kontak-teacher-card .tag {
+    white-space: normal;
+    max-width: 100%;
+    text-align: center;
   }
 }
 
