@@ -1848,12 +1848,29 @@ textarea {
 .class-picker-card h2,
 .class-picker-card h3,
 .class-picker-card h4,
-.class-picker-card small {
+.class-picker-card small,
+.class-picker-card strong {
   color: #ffffff !important;
 }
 
-.class-picker-card p {
+.class-picker-card p,
+.class-picker-card .admin-kelas-meta,
+.class-picker-card .admin-kelas-meta div {
   color: rgba(255, 255, 255, 0.94) !important;
+}
+
+.class-picker-card .admin-kelas-status-ok {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.class-picker-card.admin-kelas-card .admin-card-actions {
+  border-top-color: rgba(255, 255, 255, 0.22);
 }
 
 .class-picker-card .tag {
