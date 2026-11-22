@@ -3457,16 +3457,16 @@ window.BTD_PAGES.admin = function renderAdmin(container) {
                           <span class="tag tag-emerald">Jenjang ${escapeHtml(k.jenjang)}</span>
                           <span class="tag tag-gold">${count} Siswa</span>
                         </div>
-                        <h3 style="margin:2px 0 0;font-size:19px;color:var(--slate-900);">🏫 ${escapeHtml(k.namaKelas)}</h3>
-                        <div style="font-size:13px;color:var(--slate-700);">
+                        <h3 style="margin:2px 0 0;font-size:19px;color:#ffffff;">🏫 ${escapeHtml(k.namaKelas)}</h3>
+                        <div class="admin-kelas-meta" style="font-size:13px;color:rgba(255,255,255,0.94);">
                           <strong>Wali:</strong> ${escapeHtml(k.waliKelas || '-')}
-                          ${k.keterangan ? `<div style="font-size:12px;color:var(--slate-600);margin-top:2px;">${escapeHtml(k.keterangan)}</div>` : ''}
+                          ${k.keterangan ? `<div style="font-size:12px;color:rgba(255,255,255,0.88);margin-top:2px;">${escapeHtml(k.keterangan)}</div>` : ''}
                         </div>
                         ${kStats.total > 0
-                          ? `<div style="font-size:12px;font-weight:700;color:#be123c;background:rgba(255,228,230,0.85);border:1px solid #fda4af;border-radius:8px;padding:6px 10px;">
+                          ? `<div style="font-size:12px;font-weight:700;color:#be123c;background:rgba(255,228,230,0.94);border:1px solid #fda4af;border-radius:8px;padding:6px 10px;">
                               🔔 ${kStats.total} belum dinilai (${kStats.tugas} Tugas • ${kStats.rk} Ruang Kritis)
                             </div>`
-                          : `<div style="font-size:12px;color:#047857;font-weight:600;">✓ Semua tugas kelas sudah dinilai</div>`
+                          : `<div class="admin-kelas-status-ok">✓ Semua tugas kelas sudah dinilai</div>`
                         }
                         <div class="admin-card-actions">
                           ${kStats.total > 0
@@ -3819,13 +3819,13 @@ window.BTD_PAGES.admin = function renderAdmin(container) {
                           <span class="tag tag-emerald">Kls ${escapeHtml(m.jenjang)} • Bab ${escapeHtml(m.bab)}</span>
                           <span class="tag tag-sky">${smtTxt}</span>
                         </div>
-                        <h3 style="margin:2px 0 0;font-size:16px;color:var(--slate-900);line-height:1.35;">${escapeHtml(m.judul)}</h3>
+                        <h3 style="margin:2px 0 0;font-size:16px;color:#ffffff;line-height:1.35;">${escapeHtml(m.judul)}</h3>
                         <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
                           <span class="tag tag-gold">${escapeHtml(m.elemen)}</span>
-                          <small style="color:var(--slate-600);">${imgCount} gambar • ${tCount} tajwid</small>
+                          <small style="color:rgba(255,255,255,0.92);">${imgCount} gambar • ${tCount} tajwid</small>
                         </div>
                         ${mStats.total > 0
-                          ? `<div style="font-size:12px;font-weight:700;color:#be123c;background:rgba(255,228,230,0.85);border:1px solid #fda4af;border-radius:8px;padding:6px 10px;">
+                          ? `<div style="font-size:12px;font-weight:700;color:#be123c;background:rgba(255,228,230,0.94);border:1px solid #fda4af;border-radius:8px;padding:6px 10px;">
                               🔔 ${mStats.total} kiriman belum dinilai (${mStats.tugas} Tugas • ${mStats.rk} RK)
                             </div>`
                           : ''}
@@ -3949,8 +3949,8 @@ window.BTD_PAGES.admin = function renderAdmin(container) {
                           <span class="quick-bento-icon ${styleMeta.iconBg}">${styleMeta.icon}</span>
                           <span class="tag ${styleMeta.tag}">${jenjangSoal.length} Butir Soal</span>
                         </div>
-                        <h3 style="margin:0 0 6px;font-size:21px;color:var(--slate-900);">Kelas ${escapeHtml(j)}</h3>
-                        <p style="margin:0 0 12px;font-size:13.5px;color:var(--slate-700);flex:1;">
+                        <h3 style="margin:0 0 6px;font-size:21px;color:#ffffff;">Kelas ${escapeHtml(j)}</h3>
+                        <p style="margin:0 0 12px;font-size:13.5px;color:rgba(255,255,255,0.94);flex:1;">
                           ${escapeHtml(rombelDesc)}
                         </p>
                         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
