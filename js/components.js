@@ -2446,7 +2446,7 @@
       card.classList.remove('is-genjot', 'is-wiggle');
       void card.offsetWidth;
       card.classList.add(cls);
-      const clearMs = typeof window !== 'undefined' && window.innerWidth <= 680 ? 220 : 680;
+      const clearMs = typeof window !== 'undefined' && window.innerWidth <= 680 ? 320 : 680;
       clearTimeout(card.__genjotTimer);
       card.__genjotTimer = setTimeout(() => {
         if (card && card.classList) card.classList.remove('is-genjot', 'is-wiggle');
