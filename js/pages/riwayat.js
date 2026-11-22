@@ -316,7 +316,7 @@ window.BTD_PAGES.riwayat = function renderRiwayat(container) {
       </div>
 
       <div class="container">
-        <div class="grid grid-3" style="margin-bottom:20px;">
+        <div class="grid grid-3 riwayat-summary-cards" style="margin-bottom:20px;">
           <div class="card card-hover" role="button" tabindex="0" data-riw-status="Sedang Berlangsung" style="cursor:pointer;">
             <span class="tag tag-gold">Sedang Berlangsung</span>
             <div style="font-size:28px;font-weight:800;margin-top:6px;">${totalUpcoming}</div>
