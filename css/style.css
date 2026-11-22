@@ -1234,6 +1234,14 @@ textarea {
   margin-bottom: 4px;
 }
 
+.card {
+  background: var(--surface);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-xs);
+}
+
 .quick-bento-card {
   display: flex;
   flex-direction: column;
@@ -1696,7 +1704,8 @@ textarea {
   transform: scale(1.04) rotate(1.5deg);
 }
 
-.teacher-identity-card {
+.card.teacher-identity-card,
+.card.tone-emerald.teacher-identity-card {
   background-color: var(--theme-c1, #042f24);
   background-image:
     radial-gradient(circle at 92% 14%, rgba(245, 158, 11, 0.34), transparent 48%),
@@ -1706,13 +1715,14 @@ textarea {
   color: #ffffff;
 }
 
-.kontak-teacher-card {
+.card.kontak-teacher-card,
+.card.tone-gold.kontak-teacher-card {
   background: linear-gradient(145deg, #ffffff 0%, #fef3c7 52%, #d1fae5 100%);
   border-color: #fcd34d;
 }
 
-.teacher-identity-card h2,
-.teacher-identity-card strong {
+.card.teacher-identity-card h2,
+.card.teacher-identity-card strong {
   color: #ffffff;
 }
 
@@ -2291,14 +2301,6 @@ textarea {
   margin: 0;
   color: var(--slate-600);
   font-size: 14.5px;
-}
-
-.card {
-  background: var(--surface);
-  border: 1px solid var(--slate-200);
-  border-radius: var(--radius-lg);
-  padding: 22px;
-  box-shadow: var(--shadow-xs);
 }
 
 @keyframes cardGenjot {
