@@ -2404,6 +2404,30 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
     };
   }
 
+  /**
+   * Tata letak khusus kartu berlatar foto:
+   * - Atas: ikon sejajar horizontal dengan judul + subjudul ringkas di bawahnya.
+   * - Tengah: dibiarkan kosong transparan agar tulisan/gambar tengah foto tidak tertutup.
+   * - Bawah: frame tag (pill) dibuat kecil-kecil bersama baris aksi.
+   */
+  function renderBgSplitCard({ icon, titleTag = 'h3', title, subtitle, tagsHtml, footerHtml }) {
+    const safeTag = titleTag === 'h2' ? 'h2' : 'h3';
+    return `
+      <div class="prak-card-top-zone">
+        <div class="prak-card-top-row">
+          <span class="quick-bento-icon">${icon}</span>
+          <${safeTag} class="prak-card-top-title">${escapeHtml(title)}</${safeTag}>
+        </div>
+        <p class="prak-card-top-sub">${escapeHtml(subtitle)}</p>
+      </div>
+      <div class="prak-card-mid-spacer" aria-hidden="true"></div>
+      <div class="prak-card-bottom-zone">
+        ${tagsHtml ? `<div class="prak-card-mini-tags">${tagsHtml}</div>` : ''}
+        <div class="prak-card-bottom-foot">${footerHtml}</div>
+      </div>
+    `;
+  }
+
   function renderYoutubeReferenceCard(topic, cfg) {
     const ytId = cfg && cfg.youtubeId ? String(cfg.youtubeId).trim() : '';
     const embedSrc = ytId ? `https://www.youtube.com/embed/${encodeURIComponent(ytId)}` : '';
@@ -2587,8 +2611,16 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
                         .map(({ cat, top, rCfg }) => {
                           const hitTitle = (rCfg && rCfg.judul) || top.title;
                           const bg = buildCardBgLayers(rCfg && rCfg.coverImage, hitTitle);
-                          return `<article class="card card-hover class-picker-card ${cat.tone} ${bg.cls}" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}" role="button" tabindex="0">
-                            ${bg.open}
+                          const hitInner = bg.cls
+                            ? renderBgSplitCard({
+                                icon: cat.icon,
+                                titleTag: 'h3',
+                                title: hitTitle,
+                                subtitle: top.summary,
+                                tagsHtml: `<span class="tag ${cat.tagClass}">${cat.icon} ${escapeHtml(cat.title)}</span>${doneMap[top.id] ? '<span class="tag tag-emerald">✓ Selesai</span>' : ''}`,
+                                footerHtml: `<small>${escapeHtml(top.badge || '')}</small><button type="button" class="btn btn-primary btn-sm" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}">Buka Panduan →</button>`
+                              })
+                            : `
                             <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;">
                               <span class="tag ${cat.tagClass}">${cat.icon} ${escapeHtml(cat.title)}</span>
                               ${doneMap[top.id] ? '<span class="tag tag-emerald">✓ Selesai</span>' : ''}
@@ -2596,6 +2628,10 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
                             <h3 style="margin:0 0 6px;font-size:16.5px;color:#ffffff;">${escapeHtml(hitTitle)}</h3>
                             <p style="margin:0 0 12px;font-size:13px;color:rgba(255,255,255,0.92);flex:1;">${escapeHtml(top.summary)}</p>
                             <button type="button" class="btn btn-primary btn-sm" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}">Buka Panduan &amp; Simulasi →</button>
+                            `;
+                          return `<article class="card card-hover class-picker-card ${cat.tone} ${bg.cls}" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}" role="button" tabindex="0">
+                            ${bg.open}
+                            ${hitInner}
                             ${bg.close}
                           </article>`;
                         })
@@ -2613,9 +2649,20 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
             const catCfg = getCategoryRuntimeCfg(cat);
             const catTitle = (catCfg && catCfg.judul) || cat.title;
             const bg = buildCardBgLayers(catCfg && catCfg.coverImage, catTitle);
-            return `
-              <article class="card card-hover class-picker-card ${cat.tone} ${bg.cls}" data-open-cat="${escapeHtml(cat.id)}" role="button" tabindex="0">
-                ${bg.open}
+            const topicPillsHtml = `${cat.topics
+              .slice(0, 3)
+              .map((t) => `<span class="tag tag-slate" style="font-size:11px;">${escapeHtml(getRuntimeCfg(t).judul.replace(/^\d+\.\s*/, ''))}</span>`)
+              .join('')}${cat.topics.length > 3 ? `<span class="tag tag-slate" style="font-size:11px;">+${cat.topics.length - 3} lagi</span>` : ''}`;
+            const catInner = bg.cls
+              ? renderBgSplitCard({
+                  icon: cat.icon,
+                  titleTag: 'h3',
+                  title: catTitle,
+                  subtitle: cat.subtitle,
+                  tagsHtml: `<span class="tag ${cat.tagClass}">${cat.topics.length} Modul Praktikum</span>${topicPillsHtml}`,
+                  footerHtml: `<small>${doneCount}/${cat.topics.length} dipelajari</small><button type="button" class="btn btn-primary btn-sm" data-open-cat="${escapeHtml(cat.id)}">Pilih Topik →</button>`
+                })
+              : `
                 <div class="quick-bento-top">
                   <span class="quick-bento-icon" style="background:rgba(255,255,255,0.85);">${cat.icon}</span>
                   <span class="tag ${cat.tagClass}">${cat.topics.length} Modul Praktikum</span>
@@ -2625,16 +2672,17 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
                   ${escapeHtml(cat.subtitle)}
                 </p>
                 <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
-                  ${cat.topics
-                    .slice(0, 3)
-                    .map((t) => `<span class="tag tag-slate" style="font-size:11px;">${escapeHtml(getRuntimeCfg(t).judul.replace(/^\d+\.\s*/, ''))}</span>`)
-                    .join('')}
-                  ${cat.topics.length > 3 ? `<span class="tag tag-slate" style="font-size:11px;">+${cat.topics.length - 3} lagi</span>` : ''}
+                  ${topicPillsHtml}
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;">
                   <small style="color:#ffffff;font-weight:700;">${doneCount}/${cat.topics.length} dipelajari</small>
                   <button type="button" class="btn btn-primary btn-sm" data-open-cat="${escapeHtml(cat.id)}">Pilih Topik →</button>
                 </div>
+              `;
+            return `
+              <article class="card card-hover class-picker-card ${cat.tone} ${bg.cls}" data-open-cat="${escapeHtml(cat.id)}" role="button" tabindex="0">
+                ${bg.open}
+                ${catInner}
                 ${bg.close}
               </article>
             `;
@@ -2727,23 +2775,35 @@ window.BTD_PAGES.belajar = function renderAyoBelajar(container, routeParams = {}
               const rCfg = getRuntimeCfg(top);
               const displayTitle = (rCfg && rCfg.judul) || top.title;
               const bg = buildCardBgLayers(rCfg && rCfg.coverImage, displayTitle);
-              return `
-                <article class="card card-hover class-picker-card ${tone} ${bg.cls}" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}" role="button" tabindex="0">
-                  ${bg.open}
+              const topicMetaSmall = `<small style="color:#ffffff;font-weight:700;">📋 ${(top.steps || []).length} Langkah${top.audioExamples ? ' • 🔊 Contoh Suara' : ''}${top.isZakatSimulator ? ' • 🧮 Kalkulator' : ''}${rCfg.youtubeId ? ' • 🎬 Video' : ''}${rCfg.coverImage ? ' • 🖼️ Foto Latar' : ''}</small>`;
+              const topicStatusTag = isDone ? '<span class="tag tag-emerald">✓ Sudah Dipelajari</span>' : '<span class="tag tag-slate">Belum Ditandai</span>';
+              const topicInner = bg.cls
+                ? renderBgSplitCard({
+                    icon: cat.icon,
+                    titleTag: 'h2',
+                    title: displayTitle,
+                    subtitle: top.summary,
+                    tagsHtml: `<span class="tag ${cat.tagClass}">${escapeHtml(top.badge)}</span>${topicStatusTag}`,
+                    footerHtml: `${topicMetaSmall}<button type="button" class="btn btn-primary btn-sm" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}">Pelajari →</button>`
+                  })
+                : `
                   <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
                     <span class="tag ${cat.tagClass}">${escapeHtml(top.badge)}</span>
-                    ${isDone ? '<span class="tag tag-emerald">✓ Sudah Dipelajari</span>' : '<span class="tag tag-slate">Belum Ditandai</span>'}
+                    ${topicStatusTag}
                   </div>
                   <h2 style="margin:0 0 8px;font-size:19.5px;color:#ffffff;">${escapeHtml(displayTitle)}</h2>
                   <p style="margin:0 0 14px;font-size:13.8px;color:rgba(255,255,255,0.92);flex:1;line-height:1.58;">
                     ${escapeHtml(top.summary)}
                   </p>
                   <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:auto;">
-                    <small style="color:#ffffff;font-weight:700;">
-                      📋 ${(top.steps || []).length} Langkah${top.audioExamples ? ' • 🔊 Contoh Suara' : ''}${top.isZakatSimulator ? ' • 🧮 Kalkulator' : ''}${rCfg.youtubeId ? ' • 🎬 Video' : ''}${rCfg.coverImage ? ' • 🖼️ Foto Latar' : ''}
-                    </small>
+                    ${topicMetaSmall}
                     <button type="button" class="btn btn-primary btn-sm" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}">Pelajari Lengkap →</button>
                   </div>
+                `;
+              return `
+                <article class="card card-hover class-picker-card ${tone} ${bg.cls}" data-open-topic="${escapeHtml(cat.id)}::${escapeHtml(top.id)}" role="button" tabindex="0">
+                  ${bg.open}
+                  ${topicInner}
                   ${bg.close}
                 </article>
               `;
